@@ -11,11 +11,11 @@ var app = {
   iniciaBotones: function() {
     var buttonAction = document.querySelector('#button-action');
     buttonAction.addEventListener('click', function(){
-      app.cargarFoto(Camera.PictureSourceType.CAMERA);
+      app.cargarFoto(Camera.PictureSourceType.CAMERA);  /* para elegir una foto hecha con la cámara, después elegiremos de la galería   */
     });
 
-    var filterButtons = document.querySelectorAll('.button-filter');
-    filterButtons[0].addEventListener('click', function(){
+    var filterButtons = document.querySelectorAll('.button-filter');  /* seleccionamos todos los botones para aplicar los filtros con cada uno */
+    filterButtons[0].addEventListener('click', function(){          /* con los escuchadores recogemos la info de pixeles etc almacenada en el canvas   */
       app.aplicaFiltro('gray');
     });
     filterButtons[1].addEventListener('click', function(){
@@ -52,7 +52,7 @@ var app = {
   },
 
   pintarFoto: function(img) {
-    var canvas = document.querySelector('#foto');
+    var canvas = document.querySelector('#foto');   
     var context = canvas.getContext('2d');
     canvas.width = img.width;
     canvas.height = img.height;
@@ -64,13 +64,13 @@ var app = {
   },
 
   aplicaFiltro: function(filterName) {
-    var canvas = document.querySelector('#foto');
+    var canvas = document.querySelector('#foto');   /* con queryselector' accedemos a la info q está en el canvas sobre la foto  */
     var context = canvas.getContext('2d');
-    imageData = context.getImageData(0, 0, canvas.width, canvas.height);
+    imageData = context.getImageData(0, 0, canvas.width, canvas.height);    /* con getImageData' obtenemos la info sobre los pixeles  */
 
-    effects[filterName](imageData.data);
+    effects[filterName](imageData.data);  /*llamando a la función 'effects' aplicamos el filtro concreto sobre ell objeto 'imagedata'  */
 
-    context.putImageData(imageData, 0, 0);
+    context.putImageData(imageData, 0, 0);    /* con esto volvemos a pintar en el canvas la imagen resultante (filtrada)   */
   }
 };
 
