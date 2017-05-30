@@ -45,10 +45,10 @@ var app = {
 
   fotoCargada: function(imageURI) {
     var img = document.createElement('img');
-    img.onload = function(){
-      app.pintarFoto(img);
+    img.onload = function(){     /* la función 'onload' espera hasta que la foto ha terminado de cargarse para transmitirla */
+      app.pintarFoto(img);      /* cuando la carga es completa "pintamos la foto"  */
     }
-    img.src = imageURI;
+    img.src = imageURI;  /* asignamos a la imagen la URL, la direccion en el movil donde se ha guardado la foto */
   },
 
   pintarFoto: function(img) {
